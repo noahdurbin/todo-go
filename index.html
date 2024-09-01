@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Todo App</title>
+        <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+        <link rel="stylesheet" href="/static/styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Todo List</h1>
+
+            <form hx-post="/add-todo" hx-target="body">
+                <input
+                    type="text"
+                    name="task"
+                    placeholder="Enter a new task"
+                    required
+                />
+                <button type="submit">Add</button>
+            </form>
+
+            <ul>
+                {{range .}}
+                <li>
+                    <span
+                        class="todo-text {{if .Completed}}completed{{end}}"
+                        hx-post="/toggle-todo"
+                        hx-target="body"
+                        hx-vals='{"id": "{{.ID.Hex}}"}'
+                    >
+                        {{.Task}}
+                    </span>
+                    <button
+                        class="delete-btn"
+                        hx-post="/delete-todo"
+                        hx-target="body"
+                        hx-vals='{"id": "{{.ID.Hex}}"}'
+                    >
+                        Delete
+                    </button>
+                </li>
+                {{end}}
+            </ul>
+        </div>
+    </body>
+</html>
