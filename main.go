@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -23,6 +24,10 @@ type Todo struct {
 var collection *mongo.Collection
 
 func main() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 	// MongoDB Atlas connection string
 	// Replace <username> and <password> with your Atlas credentials
 	connectionString := os.Getenv("MONGODB_URI")
