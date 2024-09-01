@@ -29,7 +29,6 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 	// MongoDB Atlas connection string
-	// Replace <username> and <password> with your Atlas credentials
 	connectionString := os.Getenv("MONGODB_URI")
 	if connectionString == "" {
 		log.Fatal("MONGODB_URI environment variable is not set")
