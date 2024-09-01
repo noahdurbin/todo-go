@@ -10,29 +10,43 @@
     --ctp-lavender: #b4befe;
     --ctp-sapphire: #74c7ec;
     --ctp-red: #f38ba8;
+    --ctp-green: #a6e3a1;
+    --ctp-pink: #f5c2e7;
 }
 
 body {
     font-family: "Inter", sans-serif;
-    background-color: var(--ctp-base);
+    background: linear-gradient(135deg, var(--ctp-base) 0%, #2a2b3d 100%);
     color: var(--ctp-text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
     max-width: 32rem;
-    margin: 2rem auto;
+    width: 100%;
+    margin: 2rem;
     padding: 2rem;
-    background-color: var(--ctp-surface0);
+    background: linear-gradient(
+        135deg,
+        rgba(49, 50, 68, 0.7) 0%,
+        rgba(69, 71, 90, 0.7) 100%
+    );
     border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 h1 {
-    font-size: 1.875rem;
+    font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 1.5rem;
     text-align: center;
     color: var(--ctp-lavender);
+    text-shadow: 0 0 10px rgba(180, 190, 254, 0.5);
 }
 
 form {
@@ -42,30 +56,42 @@ form {
 
 input[type="text"] {
     flex-grow: 1;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     font-size: 1rem;
     border: 1px solid var(--ctp-surface1);
-    background-color: var(--ctp-surface1);
+    background-color: rgba(69, 71, 90, 0.3);
     color: var(--ctp-text);
-    border-radius: 0.375rem 0 0 0.375rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--ctp-blue);
 }
 
 button {
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     font-size: 1rem;
-    background-color: var(--ctp-blue);
+    background: linear-gradient(
+        135deg,
+        var(--ctp-blue) 0%,
+        var(--ctp-sapphire) 100%
+    );
     color: var(--ctp-base);
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 600;
 }
 
 button:hover {
-    background-color: var(--ctp-sapphire);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(137, 180, 250, 0.3);
 }
 
 form button {
-    border-radius: 0 0.375rem 0.375rem 0;
+    border-radius: 0 0.5rem 0.5rem 0;
 }
 
 ul {
@@ -74,13 +100,23 @@ ul {
 }
 
 li {
-    background-color: var(--ctp-surface1);
+    background: linear-gradient(
+        135deg,
+        rgba(69, 71, 90, 0.5) 0%,
+        rgba(69, 71, 90, 0.3) 100%
+    );
     margin-bottom: 0.75rem;
     padding: 1rem;
-    border-radius: 0.375rem;
+    border-radius: 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
+}
+
+li:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .completed {
@@ -89,17 +125,28 @@ li {
 }
 
 .delete-btn {
-    background-color: var(--ctp-red);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.25rem;
+    background: linear-gradient(
+        135deg,
+        var(--ctp-red) 0%,
+        var(--ctp-pink) 100%
+    );
+    padding: 0.5rem 1rem;
+    border-radius: 0.375rem;
 }
 
 .delete-btn:hover {
     opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(243, 139, 168, 0.3);
 }
 
 .todo-text {
     cursor: pointer;
     flex-grow: 1;
     margin-right: 0.75rem;
+    transition: all 0.3s ease;
+}
+
+.todo-text:hover {
+    color: var(--ctp-green);
 }
