@@ -5,30 +5,102 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Todo App</title>
         <script src="https://unpkg.com/htmx.org@1.9.2"></script>
-        <link rel="stylesheet" href="/static/styles.css" />
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #1e1e2e;
+                color: #cdd6f4;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color: #313244;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 300px;
+            }
+            h1 {
+                text-align: center;
+                color: #b4befe;
+            }
+            .logout-btn {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 0.5rem 1rem;
+                background-color: #f38ba8;
+                color: #1e1e2e;
+                text-decoration: none;
+                border-radius: 4px;
+                transition: background-color 0.3s ease;
+            }
+            .logout-btn:hover {
+                background-color: #eb6f92;
+            }
+        </style>
     </head>
     <body>
+        <a href="/logout" class="logout-btn">Logout</a>
         <div class="container">
             <h1>Todo List</h1>
 
-            <form hx-post="/add-todo" hx-target="body">
+            <form
+                hx-post="/add-todo"
+                hx-target="body"
+                style="display: flex; margin-bottom: 1rem"
+            >
                 <input
                     type="text"
                     name="task"
                     placeholder="Enter a new task"
                     required
+                    style="
+                        flex-grow: 1;
+                        padding: 0.5rem;
+                        border: 1px solid #45475a;
+                        background-color: #1e1e2e;
+                        color: #cdd6f4;
+                        border-radius: 4px 0 0 4px;
+                    "
                 />
-                <button type="submit">Add</button>
+                <button
+                    type="submit"
+                    style="
+                        padding: 0.5rem 1rem;
+                        background-color: #89b4fa;
+                        color: #1e1e2e;
+                        border: none;
+                        cursor: pointer;
+                        border-radius: 0 4px 4px 0;
+                    "
+                >
+                    Add
+                </button>
             </form>
 
-            <ul>
+            <ul style="list-style-type: none; padding: 0">
                 {{range .}}
-                <li>
+                <li
+                    style="
+                        background-color: #45475a;
+                        margin-bottom: 0.5rem;
+                        padding: 0.5rem;
+                        border-radius: 4px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                    "
+                >
                     <span
                         class="todo-text {{if .Completed}}completed{{end}}"
                         hx-post="/toggle-todo"
                         hx-target="body"
                         hx-vals='{"id": "{{.ID.Hex}}"}'
+                        style="cursor: pointer; {{if .Completed}}text-decoration: line-through; color: #6c7086;{{end}}"
                     >
                         {{.Task}}
                     </span>
@@ -37,6 +109,14 @@
                         hx-post="/delete-todo"
                         hx-target="body"
                         hx-vals='{"id": "{{.ID.Hex}}"}'
+                        style="
+                            background-color: #f38ba8;
+                            color: #1e1e2e;
+                            border: none;
+                            padding: 0.25rem 0.5rem;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        "
                     >
                         Delete
                     </button>

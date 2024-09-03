@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #1e1e2e;
+                color: #cdd6f4;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .container {
+                background-color: #313244;
+                padding: 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                width: 300px;
+            }
+            h1 {
+                text-align: center;
+                color: #b4befe;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Login</h1>
+            <form
+                action="/login"
+                method="POST"
+                style="display: flex; flex-direction: column"
+            >
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    style="
+                        margin-bottom: 1rem;
+                        padding: 0.5rem;
+                        border: 1px solid #45475a;
+                        background-color: #1e1e2e;
+                        color: #cdd6f4;
+                        border-radius: 4px;
+                    "
+                />
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    required
+                    style="
+                        margin-bottom: 1rem;
+                        padding: 0.5rem;
+                        border: 1px solid #45475a;
+                        background-color: #1e1e2e;
+                        color: #cdd6f4;
+                        border-radius: 4px;
+                    "
+                />
+                <button
+                    type="submit"
+                    style="
+                        padding: 0.5rem;
+                        background-color: #89b4fa;
+                        color: #1e1e2e;
+                        border: none;
+                        cursor: pointer;
+                        border-radius: 4px;
+                    "
+                >
+                    Login
+                </button>
+            </form>
+            <p style="text-align: center; margin-top: 1rem">
+                Don't have an account?
+                <a
+                    href="/register"
+                    style="color: #89b4fa; text-decoration: none"
+                    >Register</a
+                >
+            </p>
+        </div>
+    </body>
+</html>
